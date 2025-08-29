@@ -42,18 +42,18 @@ namespace TenantAndLeaseManagement.Application.CommandHandler
             return Result.Ok();
         }
 
-        public async Task<TenantResponse> UpdateTenantAsync(Guid id, string name, string email, string phoneNumber, CancellationToken cancellationToken)
+        public async Task<TenantResponse?> UpdateTenantAsync(Guid id, string name, string email, string phoneNumber, CancellationToken cancellationToken)
         {
             List<Tenant> tenants =  _unitOfWork.Tenants.GetAllAsync().Result;
             Tenant? tenant = tenants.FirstOrDefault(t => t.Id == new TenantId(id));
             if (tenant == null)
             {
-                return await Task.FromResult<TenantResponse>(result: null);
+                return await Task.FromResult<TenantResponse?>(result: null);
             }
             Tenant.Update(tenant,name, email, phoneNumber);
             _unitOfWork.Tenants.UpdateAsync(tenant);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
-            return _mapper.Map<TenantResponse>(tenant);
+            return _mapper.Map<TenantResponse?>(tenant);
         }
     }
 }

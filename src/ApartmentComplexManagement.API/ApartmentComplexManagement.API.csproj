@@ -18,6 +18,8 @@
   <ItemGroup>
     <ProjectReference Include="..\PropertyManagement\PropertyManagement.Controllers\PropertyManagement.Controllers.csproj" />
     <ProjectReference Include="..\PropertyManagement\PropertyManagement.Infrastructure\PropertyManagement.Infrastructure.csproj" />
+    <ProjectReference Include="..\TenantAndLeaseManagement\TenantAndLeaseManagement.Controllers\TenantAndLeaseManagement.Controllers.csproj" />
+    <ProjectReference Include="..\TenantAndLeaseManagement\TenantAndLeaseManagement.Infrastructure\TenantAndLeaseManagement.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

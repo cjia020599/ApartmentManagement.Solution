@@ -1,33 +1,41 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TenantAndLeaseManagement.Domain.Entities;
 using TenantAndLeaseManagement.Domain.Repositories;
+using TenantAndLeaseManagement.Domain.Services;
 
 namespace TenantAndLeaseManagement.Infrastructure.Data.Repositories
 {
     public class LeaseAgreementRepository : ILeaseAgreementRepository
     {
-        public Task CreateAsync(LeaseAgreement leaseAgreement)
+        private readonly TenantAndLeaseDbContext _context;
+
+        public LeaseAgreementRepository(TenantAndLeaseDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+        public async Task CreateAsync(LeaseAgreement leaseAgreement)
+        {
+            await _context.LeaseAgreements.AddAsync(leaseAgreement);
         }
 
-        public Task<List<LeaseAgreement>> GetAllAsync()
+        public async Task<List<LeaseAgreement>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.LeaseAgreements.ToListAsync();
         }
 
-        public Task RenewAsync(LeaseAgreement leaseAgreement)
+        public void RenewAsync(LeaseAgreement leaseAgreement)
         {
-            throw new NotImplementedException();
+            _context.LeaseAgreements.Update(leaseAgreement);
         }
 
-        public Task TerminateAsync(LeaseAgreement leaseAgreement)
+        public void TerminateAsync(LeaseAgreement leaseAgreement)
         {
-            throw new NotImplementedException();
+            _context.LeaseAgreements.Update(leaseAgreement);
         }
     }
 }

@@ -9,6 +9,6 @@
         public DateTime TerminationDate { get; set; }
         public string Building { get; set; } = null!;
         public string Unit { get; set; } = null!;
-        public decimal MonthlyRent { get; set; }
+        public double MonthlyRent { get; set; }
     }
 }

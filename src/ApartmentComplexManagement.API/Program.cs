@@ -4,13 +4,18 @@ using Property.Controllers;
 using Property.Infrastructure;
 using Property.Infrastructure.MappingProfiles;
 using Scalar.AspNetCore;
+using TenantAndLeaseManagement.Controllers;
+using TenantAndLeaseManagement.Application;
+using TenantAndLeaseManagement.Infrastructure;
+using TenantAndLeaseManagement.Infrastructure.MappingProfiles;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers()
-    .AddApplicationPart(typeof(PropertiesController).Assembly);
+    .AddApplicationPart(typeof(PropertiesController).Assembly)
+    .AddApplicationPart(typeof(TenantAndLeaseController).Assembly);
 builder.Services.AddOpenApi(options =>
 {
     options.AddDocumentTransformer((doc, ctx, ct) =>
@@ -50,9 +55,13 @@ builder.Services.AddOpenApi(options =>
 });
 builder.Services.AddAutoMapper(cfg => {
     cfg.AddMaps(typeof(PropertyMappingProfile).Assembly);
+    cfg.AddMaps(typeof(LeaseAgreementMappingProfile).Assembly);
+    cfg.AddMaps(typeof(TenantMappingProfile).Assembly);
 });
 builder.Services.AddPropertyApplication();
 builder.Services.AddPropertyInfrastructure(builder.Configuration);
+builder.Services.AddTenantAndLeaseManagementApplication();
+builder.Services.AddTenantAndLeaseManagementInfrastructure(builder.Configuration);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

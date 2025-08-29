@@ -11,9 +11,9 @@ namespace TenantAndLeaseManagement.Domain.Entities
         public DateTime TerminationDate { get; private set; }
         public string Building { get; private set; } = null!;
         public string Unit { get; private set; } = null!;
-        public decimal MonthlyRent { get; private set; }
+        public double MonthlyRent { get; private set; }
         protected LeaseAgreement() { }
-        private LeaseAgreement(string tenantName, string ownerName, DateTime creationDate, DateTime terminationDate, string building, string unit, decimal monthlyRent)
+        private LeaseAgreement(string tenantName, string ownerName, DateTime creationDate, DateTime terminationDate, string building, string unit, double monthlyRent)
         {
             Id = new LeaseAgreementId(Guid.NewGuid());
             TenantName = tenantName;
@@ -24,7 +24,7 @@ namespace TenantAndLeaseManagement.Domain.Entities
             Unit = unit;
             MonthlyRent = monthlyRent;
         }
-        public static LeaseAgreement Create(string tenantName, string ownerName, DateTime creationDate, DateTime terminationDate, string building, string unit, decimal monthlyRent)
+        public static LeaseAgreement Create(string tenantName, string ownerName, DateTime creationDate, DateTime terminationDate, string building, string unit, double monthlyRent)
         {
             if (string.IsNullOrWhiteSpace(tenantName))
                 throw new ArgumentException("Tenant name cannot be null or empty.", nameof(tenantName));
@@ -42,7 +42,7 @@ namespace TenantAndLeaseManagement.Domain.Entities
                 throw new ArgumentException("Monthly rent must be greater than zero.", nameof(monthlyRent));
             return new LeaseAgreement(tenantName, ownerName, creationDate, terminationDate, building, unit, monthlyRent);
         }
-        public static LeaseAgreement Renew(LeaseAgreement existingLease, DateTime newTerminationDate, decimal newMonthlyRent)
+        public static LeaseAgreement Renew(LeaseAgreement existingLease, DateTime newTerminationDate, double newMonthlyRent)
         {
             if (existingLease == null)
                 throw new ArgumentNullException(nameof(existingLease), "Existing lease cannot be null.");

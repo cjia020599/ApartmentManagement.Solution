@@ -6,7 +6,7 @@ namespace TenantAndLeaseManagement.Domain.Repositories
     {
         Task<List<LeaseAgreement>> GetAllAsync();
         Task CreateAsync(LeaseAgreement leaseAgreement);
-        Task RenewAsync(LeaseAgreement leaseAgreement);
-        Task TerminateAsync(LeaseAgreement leaseAgreement);
+        void RenewAsync(LeaseAgreement leaseAgreement);
+        void TerminateAsync(LeaseAgreement leaseAgreement);
     }
 }
