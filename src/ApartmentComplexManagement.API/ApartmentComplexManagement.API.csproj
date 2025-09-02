@@ -16,6 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FinancialManagement\FinancialManagement.Controllers\FinancialManagement.Controllers.csproj" />
+    <ProjectReference Include="..\FinancialManagement\FinancialManagement.Infrastructure\FinancialManagement.Infrastructure.csproj" />
     <ProjectReference Include="..\OwnerManagement\OwnerManagement.Controllers\OwnerManagement.Controllers.csproj" />
     <ProjectReference Include="..\OwnerManagement\OwnerManagement.Infrastructure\OwnerManagement.Infrastructure.csproj" />
     <ProjectReference Include="..\PropertyManagement\PropertyManagement.Controllers\PropertyManagement.Controllers.csproj" />

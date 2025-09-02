@@ -12,6 +12,10 @@ using PropertyManagement.Controllers;
 using PropertyManagement.Application;
 using PropertyManagement.Infrastructure;
 using PropertyManagement.Infrastructure.MappingProfiles;
+using FinancialManagement.Controllers;
+using FinancialManagement.Application;
+using FinancialManagement.Infrastructure;
+using FinancialManagement.Infrastructure.MappingProfiles;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +24,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers()
     .AddApplicationPart(typeof(PropertiesController).Assembly)
     .AddApplicationPart(typeof(TenantAndLeaseController).Assembly)
-    .AddApplicationPart(typeof(OwnerController).Assembly);
+    .AddApplicationPart(typeof(OwnerController).Assembly)
+    .AddApplicationPart(typeof(FinancialController).Assembly);
 builder.Services.AddOpenApi(options =>
 {
     options.AddDocumentTransformer((doc, ctx, ct) =>
@@ -64,6 +69,7 @@ builder.Services.AddAutoMapper(cfg => {
     cfg.AddMaps(typeof(TenantMappingProfile).Assembly);
     cfg.AddMaps(typeof(OwnerMappingProfile).Assembly);
     cfg.AddMaps(typeof(IndividualUnitMappingProfile).Assembly);
+    cfg.AddMaps(typeof(RentPaymentMappingProfile).Assembly);
 });
 builder.Services.AddPropertyApplication();
 builder.Services.AddPropertyInfrastructure(builder.Configuration);
@@ -71,6 +77,8 @@ builder.Services.AddTenantAndLeaseManagementApplication();
 builder.Services.AddTenantAndLeaseManagementInfrastructure(builder.Configuration);
 builder.Services.AddOwnerManagementApplication();
 builder.Services.AddOwnerManagementInfrastructure(builder.Configuration);
+builder.Services.AddFinancialManagementApplication();
+builder.Services.AddFinancialManagementInfrastructure(builder.Configuration);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
