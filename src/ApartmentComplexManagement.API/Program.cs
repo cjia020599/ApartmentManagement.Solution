@@ -1,13 +1,17 @@
 using Microsoft.OpenApi.Models;
-using Property.Application;
-using Property.Controllers;
-using Property.Infrastructure;
-using Property.Infrastructure.MappingProfiles;
 using Scalar.AspNetCore;
 using TenantAndLeaseManagement.Controllers;
 using TenantAndLeaseManagement.Application;
 using TenantAndLeaseManagement.Infrastructure;
 using TenantAndLeaseManagement.Infrastructure.MappingProfiles;
+using OwnerManagement.Controllers;
+using OwnerManagement.Application;
+using OwnerManagement.Infrastructure;
+using OwnerManagement.Infrastructure.MappingProfiles;
+using PropertyManagement.Controllers;
+using PropertyManagement.Application;
+using PropertyManagement.Infrastructure;
+using PropertyManagement.Infrastructure.MappingProfiles;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +19,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers()
     .AddApplicationPart(typeof(PropertiesController).Assembly)
-    .AddApplicationPart(typeof(TenantAndLeaseController).Assembly);
+    .AddApplicationPart(typeof(TenantAndLeaseController).Assembly)
+    .AddApplicationPart(typeof(OwnerController).Assembly);
 builder.Services.AddOpenApi(options =>
 {
     options.AddDocumentTransformer((doc, ctx, ct) =>
@@ -57,11 +62,15 @@ builder.Services.AddAutoMapper(cfg => {
     cfg.AddMaps(typeof(PropertyMappingProfile).Assembly);
     cfg.AddMaps(typeof(LeaseAgreementMappingProfile).Assembly);
     cfg.AddMaps(typeof(TenantMappingProfile).Assembly);
+    cfg.AddMaps(typeof(OwnerMappingProfile).Assembly);
+    cfg.AddMaps(typeof(IndividualUnitMappingProfile).Assembly);
 });
 builder.Services.AddPropertyApplication();
 builder.Services.AddPropertyInfrastructure(builder.Configuration);
 builder.Services.AddTenantAndLeaseManagementApplication();
 builder.Services.AddTenantAndLeaseManagementInfrastructure(builder.Configuration);
+builder.Services.AddOwnerManagementApplication();
+builder.Services.AddOwnerManagementInfrastructure(builder.Configuration);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

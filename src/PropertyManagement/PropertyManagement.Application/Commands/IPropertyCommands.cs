@@ -1,7 +1,7 @@
 ﻿using FluentResults;
-using Property.Application.Response;
+using PropertyManagement.Application.Response;
 
-namespace Property.Application.Commands
+namespace PropertyManagement.Application.Commands
 {
     public interface IPropertyCommands
     {

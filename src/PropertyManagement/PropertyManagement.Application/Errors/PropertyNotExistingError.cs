@@ -1,6 +1,6 @@
 ﻿using FluentResults;
 
-namespace Property.Application.Errors
+namespace PropertyManagement.Application.Errors
 {
     public class PropertyNotExistingError(string message) : Error(message) 
     {

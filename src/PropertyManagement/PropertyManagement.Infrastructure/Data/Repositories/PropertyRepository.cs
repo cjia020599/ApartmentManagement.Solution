@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Property.Domain.Entities;
-using Property.Domain.Repositories;
+using PropertyManagement.Domain.Entities;
+using PropertyManagement.Domain.Repositories;
 
-namespace Property.Infrastructure.Data.Repositories
+namespace PropertyManagement.Infrastructure.Data.Repositories
 {
     public class PropertyRepository : IPropertyRepository
     {

@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using Property.Application.Response;
-using Property.Domain.Entities;
+using PropertyManagement.Application.Response;
+using PropertyManagement.Domain.Entities;
 
-namespace Property.Infrastructure.MappingProfiles
+namespace PropertyManagement.Infrastructure.MappingProfiles
 {
     public class PropertyMappingProfile : Profile
     {

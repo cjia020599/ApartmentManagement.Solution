@@ -1,6 +1,6 @@
-﻿using Property.Domain.Entities;
+﻿using PropertyManagement.Domain.Entities;
 
-namespace Property.Domain.Services
+namespace PropertyManagement.Domain.Services
 {
     public class ChangeStatusService
     {

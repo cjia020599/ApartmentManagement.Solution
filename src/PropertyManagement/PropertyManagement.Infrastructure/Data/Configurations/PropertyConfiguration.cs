@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Property.Domain.Entities;
-using Property.Domain.ValueObjects;
+using PropertyManagement.Domain.Entities;
+using PropertyManagement.Domain.ValueObjects;
 
-namespace Property.Infrastructure.Data.Configurations
+namespace PropertyManagement.Infrastructure.Data.Configurations
 {
     public class PropertyConfiguration : IEntityTypeConfiguration<ApartmentUnit>
     {

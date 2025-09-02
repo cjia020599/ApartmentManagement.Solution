@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Property.Application.Commands;
-using Property.Application.Queries;
-using Property.Application.Response;
-using Property.Controllers.Request;
+using PropertyManagement.Application.Commands;
+using PropertyManagement.Application.Queries;
+using PropertyManagement.Application.Response;
+using PropertyManagement.Controllers.Request;
 
-namespace Property.Controllers
+namespace PropertyManagement.Controllers
 {
     [Route("api/property")]
     [ApiController]

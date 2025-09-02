@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using FluentResults;
-using Property.Application.Commands;
-using Property.Application.Errors;
-using Property.Application.Response;
-using Property.Domain.Entities;
-using Property.Domain.Repositories;
-using Property.Domain.Services;
+using PropertyManagement.Application.Commands;
+using PropertyManagement.Application.Errors;
+using PropertyManagement.Application.Response;
+using PropertyManagement.Domain.Entities;
+using PropertyManagement.Domain.Repositories;
+using PropertyManagement.Domain.Services;
 
-namespace Property.Application.CommandHandler
+namespace PropertyManagement.Application.CommandHandler
 {
     public class PropertyCommands : IPropertyCommands
     {

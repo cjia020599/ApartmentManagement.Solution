@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Property.Application.Queries;
-using Property.Domain.Repositories;
-using Property.Infrastructure.Data;
-using Property.Infrastructure.Data.Repositories;
-using Property.Infrastructure.QueryHandlers;
+using PropertyManagement.Application.Queries;
+using PropertyManagement.Domain.Repositories;
+using PropertyManagement.Infrastructure.Data;
+using PropertyManagement.Infrastructure.Data.Repositories;
+using PropertyManagement.Infrastructure.QueryHandlers;
 
-namespace Property.Infrastructure
+namespace PropertyManagement.Infrastructure
 {
     public static class DependencyInjection
     {

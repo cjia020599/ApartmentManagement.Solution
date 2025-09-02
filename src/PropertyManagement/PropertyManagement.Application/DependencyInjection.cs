@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Property.Application.CommandHandler;
-using Property.Application.Commands;
+using PropertyManagement.Application.CommandHandler;
+using PropertyManagement.Application.Commands;
 
-namespace Property.Application
+namespace PropertyManagement.Application
 {
     public static class DependencyInjection
     {

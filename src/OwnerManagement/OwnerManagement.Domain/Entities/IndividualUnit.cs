@@ -12,5 +12,27 @@ namespace OwnerManagement.Domain.Entities
         public IndividualUnitId Id { get; set; } = null!;
         public string Building { get; set; } = null!;
         public string Unit { get; set; } = null!;
+
+        protected IndividualUnit() { }
+        public static IndividualUnit Create(string unit, string building)
+        {
+            if (string.IsNullOrWhiteSpace(building))
+                throw new ArgumentException("Building cannot be null or empty.", nameof(building));
+            return new IndividualUnit
+            {
+                Id = new IndividualUnitId(Guid.NewGuid()),
+                Building = building,
+                Unit = unit
+            };
+        }
+        public void Update(string unit, string building)
+        {
+            if (string.IsNullOrWhiteSpace(unit))
+                throw new ArgumentException("Unit cannot be null or empty.", nameof(unit));
+            if (string.IsNullOrWhiteSpace(building))
+                throw new ArgumentException("Building cannot be null or empty.", nameof(building));
+            Unit = unit;
+            Building = building;
+        }
     }
 }

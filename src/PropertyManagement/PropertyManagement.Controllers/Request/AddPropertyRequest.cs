@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Property.Controllers.Request
+namespace PropertyManagement.Controllers.Request
 {
     public class AddPropertyRequest
     {

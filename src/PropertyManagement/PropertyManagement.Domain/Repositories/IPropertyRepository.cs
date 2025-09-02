@@ -1,6 +1,6 @@
-﻿using Property.Domain.Entities;
+﻿using PropertyManagement.Domain.Entities;
 
-namespace Property.Domain.Repositories
+namespace PropertyManagement.Domain.Repositories
 {
     public interface IPropertyRepository
     {

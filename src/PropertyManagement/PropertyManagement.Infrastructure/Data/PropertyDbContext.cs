@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Property.Domain.Entities;
+using PropertyManagement.Domain.Entities;
 
-namespace Property.Infrastructure.Data
+namespace PropertyManagement.Infrastructure.Data
 {
     public class PropertyDbContext : DbContext
     {

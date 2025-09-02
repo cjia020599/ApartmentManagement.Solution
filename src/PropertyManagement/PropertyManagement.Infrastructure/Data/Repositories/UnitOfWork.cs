@@ -1,6 +1,6 @@
-﻿using Property.Domain.Repositories;
+﻿using PropertyManagement.Domain.Repositories;
 
-namespace Property.Infrastructure.Data.Repositories
+namespace PropertyManagement.Infrastructure.Data.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {

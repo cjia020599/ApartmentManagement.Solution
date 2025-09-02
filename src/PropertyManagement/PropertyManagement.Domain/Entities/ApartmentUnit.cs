@@ -1,6 +1,6 @@
-﻿using Property.Domain.ValueObjects;
+﻿using PropertyManagement.Domain.ValueObjects;
 
-namespace Property.Domain.Entities
+namespace PropertyManagement.Domain.Entities
 {
     public class ApartmentUnit
     {
@@ -15,6 +15,8 @@ namespace Property.Domain.Entities
 
         public static ApartmentUnit Create(string unit, string building)
         {
+            if (string.IsNullOrWhiteSpace(unit))
+                throw new ArgumentException("Unit cannot be null or empty.", nameof(unit));
             if (string.IsNullOrWhiteSpace(building))
                 throw new ArgumentException("Building cannot be null or empty.", nameof(building));
 

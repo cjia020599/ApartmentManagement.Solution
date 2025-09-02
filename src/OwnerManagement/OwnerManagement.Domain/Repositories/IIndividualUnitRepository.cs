@@ -10,8 +10,8 @@ namespace OwnerManagement.Domain.Repositories
     public interface IIndividualUnitRepository
     {
         Task<List<IndividualUnit>> GetAllAsync();
-        Task AddAsync(IndividualUnit entity);
-        Task UpdateAsync(IndividualUnit entity);
-        Task DeleteAsync(IndividualUnit entity);
+        Task AddAsync(IndividualUnit individualUnit);
+        void UpdateAsync(IndividualUnit individualUnit);
+        void DeleteAsync(IndividualUnit individualUnit);
     }
 }

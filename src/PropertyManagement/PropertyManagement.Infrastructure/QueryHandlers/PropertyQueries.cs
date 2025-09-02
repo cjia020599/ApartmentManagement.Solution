@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
-using Property.Application.Queries;
-using Property.Application.Response;
-using Property.Infrastructure.Data;
+using PropertyManagement.Application.Queries;
+using PropertyManagement.Application.Response;
+using PropertyManagement.Infrastructure.Data;
 
-namespace Property.Infrastructure.QueryHandlers
+namespace PropertyManagement.Infrastructure.QueryHandlers
 {
     public class PropertyQueries : IPropertyQueries
     {
