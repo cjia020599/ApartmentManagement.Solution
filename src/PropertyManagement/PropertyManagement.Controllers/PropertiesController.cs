@@ -25,26 +25,27 @@ namespace PropertyManagement.Controllers
             PropertyResponse property = await _commands.AddPropertyAsync(request.Unit, request.Building, HttpContext.RequestAborted);
             return CreatedAtAction(nameof(GetProperties), new { id = property.Id }, property);
         }
-        [HttpDelete("delete")]
-        public async Task<IActionResult> DeleteProperty(string name)
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> DeleteProperty(Guid id)
         {
-            var result = await _commands.DeletePropertyAsync(name, HttpContext.RequestAborted);
+            var result = await _commands.DeletePropertyAsync(id, HttpContext.RequestAborted);
             if (result.IsFailed)
             {
                 return BadRequest(result.Errors.First().Message);
             }
             return NoContent();
         }
-        [HttpGet("getAll")]
-        public async Task<IActionResult> GetProperties(string? id)
+        [HttpGet("")]
+        public async Task<IActionResult> GetProperties(Guid? id)
         {
-            PropertyResponse? property = await _queries.GetPropertyByUnitAsync(id);
-            if (property == null)
+            if (id.HasValue)
             {
-                var properties = await _queries.GetAllPropertiesAsync();
-                return Ok(properties);
+                var property = await _queries.GetPropertyByIdAsync(id.Value);
+                if (property == null) return NotFound();
+                return Ok(property);
             }
-            return Ok(property);
+            var properties = await _queries.GetAllPropertiesAsync();
+            return Ok(properties);
         }
         [HttpGet("getAllVacants")]
         public async Task<IActionResult> GetVacantProperties()

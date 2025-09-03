@@ -33,10 +33,10 @@ namespace PropertyManagement.Application.CommandHandler
             return _mapper.Map<PropertyResponse>(property);
         }
 
-        public async Task<Result> DeletePropertyAsync(string unit, CancellationToken cancellationToken)
+        public async Task<Result> DeletePropertyAsync(Guid propertyId, CancellationToken cancellationToken)
         {
             List<ApartmentUnit> properties = await _unitOfWork.Properties.GetAllAsync();
-            ApartmentUnit? property = properties.FirstOrDefault(p => p.Unit == unit);
+            ApartmentUnit? property = properties.FirstOrDefault(p => p.Id == new ApartmentUnitId(propertyId));
             if (property == null)
             {
                 return Result.Fail(new PropertyNotExistingError("This property doesn't exist."));

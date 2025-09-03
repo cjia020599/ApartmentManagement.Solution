@@ -4,7 +4,7 @@ namespace PropertyManagement.Application.Queries
 {
     public interface IPropertyQueries
     {
-        Task<PropertyResponse?> GetPropertyByUnitAsync(string? unit);
+        Task<PropertyResponse?> GetPropertyByIdAsync(Guid id);
         Task<List<PropertyResponse>> GetAllPropertiesAsync();
         Task<List<PropertyResponse>> GetAllVacantProperties();
         Task<List<PropertyResponse>> GetAllOccupiedProperties();

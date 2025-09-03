@@ -47,9 +47,9 @@ namespace PropertyManagement.Infrastructure.QueryHandlers
             .ToListAsync();
         }
 
-        public async Task<PropertyResponse?> GetPropertyByUnitAsync(string? unit)
+        public async Task<PropertyResponse?> GetPropertyByIdAsync(Guid id)
         {
-            var property = await _context.Properties.Where(u => u.Unit == unit).FirstOrDefaultAsync();
+            var property = await _context.Properties.Where(u => u.Id == new Domain.ValueObjects.ApartmentUnitId(id)).FirstOrDefaultAsync();
             if (property == null)
             {
                 return null;
