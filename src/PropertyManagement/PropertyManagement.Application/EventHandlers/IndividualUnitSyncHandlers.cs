@@ -51,8 +51,6 @@ namespace PropertyManagement.Application.EventHandlers
         public async Task Handle(IndividualUnitDeleted notification, CancellationToken cancellationToken)
         {
             var all = await _unitOfWork.Properties.GetAllAsync();
-            // No building/unit provided; cannot match reliably. In a follow-up, migrate Property to store IndividualUnitId for precise sync.
-            // For now, do nothing.
         }
     }
 }

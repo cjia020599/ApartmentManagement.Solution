@@ -47,10 +47,10 @@ namespace PropertyManagement.Application.CommandHandler
 
         }
 
-        public async Task<Result> OccupyPropertyAsync(string unit, CancellationToken cancellationToken)
+        public async Task<Result> OccupyPropertyAsync(Guid propertyId, CancellationToken cancellationToken)
         {
             List<ApartmentUnit> properties = await _unitOfWork.Properties.GetAllAsync();
-            ApartmentUnit? property = properties.FirstOrDefault(p => p.Unit == unit);
+            ApartmentUnit? property = properties.FirstOrDefault(p => p.Id == new ApartmentUnitId(propertyId));
             if (property == null)
             {
                 return Result.Fail(new PropertyNotExistingError("This property doesn't exist."));
@@ -64,10 +64,10 @@ namespace PropertyManagement.Application.CommandHandler
 
         }
 
-        public async Task<Result> UnderMaintenancePropertyAsync(string unit, CancellationToken cancellationToken)
+        public async Task<Result> UnderMaintenancePropertyAsync(Guid propertyId, CancellationToken cancellationToken)
         {
             List<ApartmentUnit> properties = await _unitOfWork.Properties.GetAllAsync();
-            ApartmentUnit? property = properties.FirstOrDefault(p => p.Unit == unit);
+            ApartmentUnit? property = properties.FirstOrDefault(p => p.Id == new ApartmentUnitId(propertyId));
             if (property == null)
             {
                 return Result.Fail(new PropertyNotExistingError("This property doesn't exist."));
@@ -80,10 +80,10 @@ namespace PropertyManagement.Application.CommandHandler
             return Result.Ok();
         }
 
-        public async Task<Result> VacantPropertyAsync(string unit, CancellationToken cancellationToken)
+        public async Task<Result> VacantPropertyAsync(Guid propertyId, CancellationToken cancellationToken)
         {
             List<ApartmentUnit> properties = await _unitOfWork.Properties.GetAllAsync();
-            ApartmentUnit? property = properties.FirstOrDefault(p => p.Unit == unit);
+            ApartmentUnit? property = properties.FirstOrDefault(p => p.Id == new ApartmentUnitId(propertyId));
             if (property == null)
             {
                 return Result.Fail(new PropertyNotExistingError("This property doesn't exist."));

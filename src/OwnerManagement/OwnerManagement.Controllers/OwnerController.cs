@@ -65,9 +65,9 @@ namespace OwnerManagement.Controllers
             return Ok(individualUnits);
         }
         [HttpPost("assignUnitToOwner")]
-        public async Task<IActionResult> AssignUnitToOwner(Guid ownerId, string building, string unit)
+        public async Task<IActionResult> AssignUnitToOwner(Guid ownerId, Guid individualUnitId)
         {
-            var result = await _ownerCommands.AssignUnitToOwnerAsync(ownerId, building, unit, HttpContext.RequestAborted);
+            var result = await _ownerCommands.AssignUnitToOwnerAsync(ownerId, individualUnitId, HttpContext.RequestAborted);
             if (result.IsFailed)
             {
                 return BadRequest(result.Errors.First().Message);
@@ -75,9 +75,9 @@ namespace OwnerManagement.Controllers
             return NoContent();
         }
         [HttpPost("removeUnitToOwner")]
-        public async Task<IActionResult> RemoveUnitToOwner(Guid ownerId, string building, string unit)
+        public async Task<IActionResult> RemoveUnitToOwner(Guid ownerId, Guid individualUnitId)
         {
-            var result = await _ownerCommands.RemoveUnitFromOwnerAsync(ownerId, building, unit, HttpContext.RequestAborted);
+            var result = await _ownerCommands.RemoveUnitFromOwnerAsync(ownerId, individualUnitId, HttpContext.RequestAborted);
             if (result.IsFailed)
             {
                 return BadRequest(result.Errors.First().Message);

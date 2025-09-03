@@ -28,7 +28,7 @@ namespace OwnerManagement.Application.CommandHandler
 
         }
 
-        public async Task<Result> AssignUnitToOwnerAsync(Guid ownerId, string building, string unit, CancellationToken cancellationToken)
+        public async Task<Result> AssignUnitToOwnerAsync(Guid ownerId, Guid individualUnitId, CancellationToken cancellationToken)
         {
             List<Owner> owners = _unitOfWork.Owners.GetAllAsync().Result;
             Owner? owner = owners.FirstOrDefault(o => o.Id == new OwnerId(ownerId));
@@ -37,7 +37,7 @@ namespace OwnerManagement.Application.CommandHandler
                 throw new Exception("This owner doesn't exist.");
             }
             List<IndividualUnit> individualUnits = _unitOfWork.IndividualUnits.GetAllAsync().Result;
-            IndividualUnit? individualUnit = individualUnits.FirstOrDefault(i => i.Building == building && i.Unit == unit);
+            IndividualUnit? individualUnit = individualUnits.FirstOrDefault(i => i.Id == new IndividualUnitId(individualUnitId));
             if (individualUnit == null)
             {
                 throw new Exception("This individual unit doesn't exist.");
@@ -62,7 +62,7 @@ namespace OwnerManagement.Application.CommandHandler
 
         }
 
-        public async Task<Result> RemoveUnitFromOwnerAsync(Guid ownerId, string building, string unit, CancellationToken cancellationToken)
+        public async Task<Result> RemoveUnitFromOwnerAsync(Guid ownerId, Guid individualUnitId, CancellationToken cancellationToken)
         {
             List<Owner> owners = _unitOfWork.Owners.GetAllAsync().Result;
             Owner? owner = owners.FirstOrDefault(o => o.Id == new OwnerId(ownerId));
@@ -71,7 +71,7 @@ namespace OwnerManagement.Application.CommandHandler
                 throw new Exception("This owner doesn't exist.");
             }
             List<IndividualUnit> individualUnits = _unitOfWork.IndividualUnits.GetAllAsync().Result;
-            IndividualUnit? individualUnit = individualUnits.FirstOrDefault(i => i.Building == building && i.Unit == unit);
+            IndividualUnit? individualUnit = individualUnits.FirstOrDefault(i => i.Id == new IndividualUnitId(individualUnitId));
             if (individualUnit == null)
             {
                 throw new Exception("This individual unit doesn't exist.");
