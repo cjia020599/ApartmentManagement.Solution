@@ -25,7 +25,7 @@ namespace PropertyManagement.Controllers
             PropertyResponse property = await _commands.AddPropertyAsync(request.Unit, request.Building, HttpContext.RequestAborted);
             return CreatedAtAction(nameof(GetProperties), new { id = property.Id }, property);
         }
-        [HttpDelete("delete/{id}")]
+        [HttpDelete("delete")]
         public async Task<IActionResult> DeleteProperty(Guid id)
         {
             var result = await _commands.DeletePropertyAsync(id, HttpContext.RequestAborted);
