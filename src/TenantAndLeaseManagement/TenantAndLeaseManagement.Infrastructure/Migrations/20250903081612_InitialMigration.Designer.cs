@@ -12,7 +12,7 @@ using TenantAndLeaseManagement.Infrastructure.Data;
 namespace TenantAndLeaseManagement.Infrastructure.Migrations
 {
     [DbContext(typeof(TenantAndLeaseDbContext))]
-    [Migration("20250827105519_InitialMigration")]
+    [Migration("20250903081612_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -31,12 +31,11 @@ namespace TenantAndLeaseManagement.Infrastructure.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Building")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid>("IndividualUnitId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<double>("MonthlyRent")
                         .HasColumnType("float");
@@ -54,10 +53,6 @@ namespace TenantAndLeaseManagement.Infrastructure.Migrations
 
                     b.Property<DateTime>("TerminationDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Unit")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

@@ -63,13 +63,13 @@ namespace OwnerManagement.Infrastructure.Migrations
             modelBuilder.Entity("OwnerManagement.Domain.Entities.IndividualUnit", b =>
                 {
                     b.HasOne("OwnerManagement.Domain.Entities.Owner", null)
-                        .WithMany("individualUnits")
+                        .WithMany("IndividualUnits")
                         .HasForeignKey("OwnerId");
                 });
 
             modelBuilder.Entity("OwnerManagement.Domain.Entities.Owner", b =>
                 {
-                    b.Navigation("individualUnits");
+                    b.Navigation("IndividualUnits");
                 });
 #pragma warning restore 612, 618
         }

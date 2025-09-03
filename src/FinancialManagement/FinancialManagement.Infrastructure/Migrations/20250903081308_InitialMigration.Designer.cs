@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FinancialManagement.Infrastructure.Migrations
 {
     [DbContext(typeof(FinancialDbContext))]
-    [Migration("20250903060859_InitialMigration")]
+    [Migration("20250903081308_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -34,9 +34,8 @@ namespace FinancialManagement.Infrastructure.Migrations
                     b.Property<double>("Amount")
                         .HasColumnType("float");
 
-                    b.Property<string>("Building")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("IndividualUnitId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("OwnerId")
                         .HasColumnType("uniqueidentifier");
@@ -46,10 +45,6 @@ namespace FinancialManagement.Infrastructure.Migrations
 
                     b.Property<Guid>("TenantId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Unit")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

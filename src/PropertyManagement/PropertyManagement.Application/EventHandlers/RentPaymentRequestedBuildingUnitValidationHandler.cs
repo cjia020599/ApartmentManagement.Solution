@@ -1,6 +1,7 @@
 using FinancialManagement.Domain.Events;
 using MediatR;
 using PropertyManagement.Domain.Repositories;
+using PropertyManagement.Domain.ValueObjects;
 
 namespace PropertyManagement.Application.EventHandlers
 {
@@ -14,7 +15,7 @@ namespace PropertyManagement.Application.EventHandlers
         public async Task Handle(RentPaymentRequestedDomainEvent notification, CancellationToken cancellationToken)
         {
             var units = await _propertyRepository.GetAllAsync();
-            var unit = units.FirstOrDefault(u => u.Unit == notification.Unit && u.Building == notification.Building);
+            var unit = units.FirstOrDefault(u => u.Id == new ApartmentUnitId(notification.IndividualUnitId));
             if (unit == null)
                 throw new Exception("Unit or Building does not exist.");
         }

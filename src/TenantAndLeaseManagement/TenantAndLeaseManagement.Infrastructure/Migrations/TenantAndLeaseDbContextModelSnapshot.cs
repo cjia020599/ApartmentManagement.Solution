@@ -28,12 +28,11 @@ namespace TenantAndLeaseManagement.Infrastructure.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Building")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid>("IndividualUnitId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<double>("MonthlyRent")
                         .HasColumnType("float");
@@ -51,10 +50,6 @@ namespace TenantAndLeaseManagement.Infrastructure.Migrations
 
                     b.Property<DateTime>("TerminationDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Unit")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

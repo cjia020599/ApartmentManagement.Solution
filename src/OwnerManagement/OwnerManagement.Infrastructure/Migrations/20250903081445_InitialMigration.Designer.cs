@@ -12,7 +12,7 @@ using OwnerManagement.Infrastructure.Data;
 namespace OwnerManagement.Infrastructure.Migrations
 {
     [DbContext(typeof(OwnerDbContext))]
-    [Migration("20250901095925_InitialMigration")]
+    [Migration("20250903081445_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -66,13 +66,13 @@ namespace OwnerManagement.Infrastructure.Migrations
             modelBuilder.Entity("OwnerManagement.Domain.Entities.IndividualUnit", b =>
                 {
                     b.HasOne("OwnerManagement.Domain.Entities.Owner", null)
-                        .WithMany("individualUnits")
+                        .WithMany("IndividualUnits")
                         .HasForeignKey("OwnerId");
                 });
 
             modelBuilder.Entity("OwnerManagement.Domain.Entities.Owner", b =>
                 {
-                    b.Navigation("individualUnits");
+                    b.Navigation("IndividualUnits");
                 });
 #pragma warning restore 612, 618
         }

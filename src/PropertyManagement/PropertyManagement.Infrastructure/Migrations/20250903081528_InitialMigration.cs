@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace FinancialManagement.Infrastructure.Migrations
+namespace PropertyManagement.Infrastructure.Migrations
 {
     /// <inheritdoc />
     public partial class InitialMigration : Migration
@@ -12,24 +12,23 @@ namespace FinancialManagement.Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(
-                name: "Financial");
+                name: "Property");
 
             migrationBuilder.CreateTable(
-                name: "RentPayments",
-                schema: "Financial",
+                name: "Properties",
+                schema: "Property",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Amount = table.Column<double>(type: "float", nullable: false),
-                    PaymentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TenantId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Building = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Unit = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OwnerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Owner = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Tenant = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RentPayments", x => x.Id);
+                    table.PrimaryKey("PK_Properties", x => x.Id);
                 });
         }
 
@@ -37,8 +36,8 @@ namespace FinancialManagement.Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "RentPayments",
-                schema: "Financial");
+                name: "Properties",
+                schema: "Property");
         }
     }
 }

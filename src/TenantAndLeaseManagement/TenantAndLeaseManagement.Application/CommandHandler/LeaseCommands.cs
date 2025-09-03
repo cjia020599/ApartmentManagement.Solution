@@ -27,9 +27,7 @@ namespace TenantAndLeaseManagement.Application.CommandHandler
             {
                 throw new Exception("Individual unit does not exist.");
             }
-            var building = "";
-            var unit = "";
-            LeaseAgreement agreement = LeaseAgreement.Create(tenantName, ownerName, creationDate, creationDate.AddMonths(6), building, unit, monthlyRent);
+            LeaseAgreement agreement = LeaseAgreement.Create(tenantName, ownerName, creationDate, creationDate.AddMonths(6), individualUnitId, monthlyRent);
             await _unitOfWork.LeaseAgreements.CreateAsync(agreement);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
             return _mapper.Map<LeaseAgreementResponse>(agreement);

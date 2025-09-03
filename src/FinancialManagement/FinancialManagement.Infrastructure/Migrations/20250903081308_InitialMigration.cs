@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace PropertyManagement.Infrastructure.Migrations
+namespace FinancialManagement.Infrastructure.Migrations
 {
     /// <inheritdoc />
     public partial class InitialMigration : Migration
@@ -12,23 +12,23 @@ namespace PropertyManagement.Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(
-                name: "Property");
+                name: "Financial");
 
             migrationBuilder.CreateTable(
-                name: "Properties",
-                schema: "Property",
+                name: "RentPayments",
+                schema: "Financial",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Unit = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Building = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Owner = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Tenant = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Amount = table.Column<double>(type: "float", nullable: false),
+                    PaymentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TenantId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IndividualUnitId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    OwnerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Properties", x => x.Id);
+                    table.PrimaryKey("PK_RentPayments", x => x.Id);
                 });
         }
 
@@ -36,8 +36,8 @@ namespace PropertyManagement.Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Properties",
-                schema: "Property");
+                name: "RentPayments",
+                schema: "Financial");
         }
     }
 }

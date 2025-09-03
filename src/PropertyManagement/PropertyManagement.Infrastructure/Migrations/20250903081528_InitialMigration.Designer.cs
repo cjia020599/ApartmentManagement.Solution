@@ -12,7 +12,7 @@ using PropertyManagement.Infrastructure.Data;
 namespace PropertyManagement.Infrastructure.Migrations
 {
     [DbContext(typeof(PropertyDbContext))]
-    [Migration("20250826060355_InitialMigration")]
+    [Migration("20250903081528_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -26,7 +26,7 @@ namespace PropertyManagement.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Property.Domain.Entities.ApartmentUnit", b =>
+            modelBuilder.Entity("PropertyManagement.Domain.Entities.ApartmentUnit", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");

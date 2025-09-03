@@ -39,8 +39,7 @@ namespace TenantAndLeaseManagement.Infrastructure.Migrations
                     OwnerName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TerminationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Building = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Unit = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IndividualUnitId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     MonthlyRent = table.Column<double>(type: "float", nullable: false),
                     TenantId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
