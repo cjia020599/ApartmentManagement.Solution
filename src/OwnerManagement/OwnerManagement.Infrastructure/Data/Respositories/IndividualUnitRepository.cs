@@ -31,5 +31,10 @@ namespace OwnerManagement.Infrastructure.Data.Respositories
         {
             _context.IndividualUnits.Update(individualUnit);    
         }
+
+        public Task<bool> ExistsByIdAsync(Guid individualUnitId, CancellationToken cancellationToken)
+        {
+            return _context.IndividualUnits.AnyAsync(iu => iu.Id.Value == individualUnitId, cancellationToken);
+        }
     }
 }

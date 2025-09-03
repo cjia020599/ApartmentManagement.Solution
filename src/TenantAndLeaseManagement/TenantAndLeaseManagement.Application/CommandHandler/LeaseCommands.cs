@@ -4,6 +4,7 @@ using TenantAndLeaseManagement.Application.Response;
 using TenantAndLeaseManagement.Domain.Entities;
 using TenantAndLeaseManagement.Domain.Repositories;
 using TenantAndLeaseManagement.Domain.ValueObjects;
+using OwnerManagement.Domain.Repositories;
 
 namespace TenantAndLeaseManagement.Application.CommandHandler
 {
@@ -11,14 +12,23 @@ namespace TenantAndLeaseManagement.Application.CommandHandler
     {
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IIndividualUnitRepository _individualUnitRepository;
 
-        public LeaseCommands(IMapper mapper, IUnitOfWork unitOfWork)
+        public LeaseCommands(IMapper mapper, IUnitOfWork unitOfWork, IIndividualUnitRepository individualUnitRepository)
         {
             _mapper = mapper;
             _unitOfWork = unitOfWork;
+            _individualUnitRepository = individualUnitRepository;
         }
-        public async Task<LeaseAgreementResponse> CreateLeaseAsync(string tenantName, string ownerName, DateTime creationDate, string building, string unit, double monthlyRent, CancellationToken cancellationToken)
+        public async Task<LeaseAgreementResponse> CreateLeaseAsync(string tenantName, string ownerName, DateTime creationDate, Guid individualUnitId, double monthlyRent, CancellationToken cancellationToken)
         {
+            var exists = await _individualUnitRepository.ExistsByIdAsync(individualUnitId, cancellationToken);
+            if (!exists)
+            {
+                throw new Exception("Individual unit does not exist.");
+            }
+            var building = "";
+            var unit = "";
             LeaseAgreement agreement = LeaseAgreement.Create(tenantName, ownerName, creationDate, creationDate.AddMonths(6), building, unit, monthlyRent);
             await _unitOfWork.LeaseAgreements.CreateAsync(agreement);
             await _unitOfWork.SaveChangesAsync(cancellationToken);

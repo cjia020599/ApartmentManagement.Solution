@@ -32,10 +32,10 @@ namespace FinancialManagement.Infrastructure.QueryHandlers
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<List<RentPaymentResponse>> GetRentPaymentsByBuildingAsync(string building)
+        public async Task<List<RentPaymentResponse>> GetRentPaymentsByIndividualUnitAsync(Guid individualUnitId)
         {
             return await _context.RentPayments
-                .Where(rp => rp.Building == building)
+                .Where(rp => rp.IndividualUnitId == individualUnitId)
                 .Select(rp => _mapper.Map<RentPaymentResponse>(rp))
                 .ToListAsync();
         }
@@ -56,12 +56,6 @@ namespace FinancialManagement.Infrastructure.QueryHandlers
                 .ToListAsync();
         }
 
-        public Task<List<RentPaymentResponse>> GetRentPaymentsByUnitAsync(string unit)
-        {
-            return _context.RentPayments
-                .Where(rp => rp.Unit == unit)
-                .Select(rp => _mapper.Map<RentPaymentResponse>(rp))
-                .ToListAsync();
-        }
+        
     }
 }

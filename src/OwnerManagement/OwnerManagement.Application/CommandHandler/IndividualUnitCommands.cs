@@ -5,6 +5,8 @@ using OwnerManagement.Application.Response;
 using OwnerManagement.Domain.Entities;
 using OwnerManagement.Domain.Repositories;
 using OwnerManagement.Domain.ValueObjects;
+using MediatR;
+using OwnerManagement.Domain.Events;
 
 namespace OwnerManagement.Application.CommandHandler
 {
@@ -12,17 +14,20 @@ namespace OwnerManagement.Application.CommandHandler
     {
         private readonly IMapper _mapper;
         private readonly IUnitOFWork _unitOfWork;
+        private readonly IMediator _mediator;
 
-        public IndividualUnitCommands(IMapper mapper, IUnitOFWork unitofWork)
+        public IndividualUnitCommands(IMapper mapper, IUnitOFWork unitofWork, IMediator mediator)
         {
             _mapper = mapper;
             _unitOfWork = unitofWork;
+            _mediator = mediator;
         }
         public async Task<IndividualUnitResponse> AddIndividualUnitAsync(string building, string unit, CancellationToken cancellationToken)
         {
             IndividualUnit individualUnit = IndividualUnit.Create(unit,building);
             await _unitOfWork.IndividualUnits.AddAsync(individualUnit);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
+            await _mediator.Publish(new IndividualUnitCreated(individualUnit.Id.Value, building, unit), cancellationToken);
             return _mapper.Map<IndividualUnitResponse>(individualUnit);
         }
 
@@ -36,6 +41,7 @@ namespace OwnerManagement.Application.CommandHandler
             }
             _unitOfWork.IndividualUnits.DeleteAsync(individualUnit);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
+            await _mediator.Publish(new IndividualUnitDeleted(individualUnit.Id.Value), cancellationToken);
             return Result.Ok();
         }
 
@@ -50,6 +56,7 @@ namespace OwnerManagement.Application.CommandHandler
             individualUnit.Update(unit, building);
             _unitOfWork.IndividualUnits.UpdateAsync(individualUnit);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
+            await _mediator.Publish(new IndividualUnitUpdated(individualUnit.Id.Value, building, unit), cancellationToken);
             return Result.Ok();
         }
     }

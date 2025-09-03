@@ -24,16 +24,15 @@ namespace FinancialManagement.Application.CommandHandler
             _mediator = mediator;
             _individualUnitRepository = individualUnitRepository;
         }
-        public async Task<RentPaymentResponse> ProcessRentPaymentAsync(double amount, DateTime paymentDate, Guid tenantId, string building, string unit, Guid ownerId)
+        public async Task<RentPaymentResponse> ProcessRentPaymentAsync(double amount, DateTime paymentDate, Guid tenantId, Guid individualUnitId, Guid ownerId)
         {
-            var individualUnits = await _individualUnitRepository.GetAllAsync();
-            var exists = individualUnits.Any(iu => iu.Building == building && iu.Unit == unit);
+            var exists = await _individualUnitRepository.ExistsByIdAsync(individualUnitId, CancellationToken.None);
             if (!exists)
             {
-                throw new Exception($"Unit '{unit}' in building '{building}' does not exist.");
+                throw new Exception($"Individual unit with id '{individualUnitId}' does not exist.");
             }
-            await _mediator.Publish(new RentPaymentRequestedDomainEvent(ownerId, building, unit, tenantId, amount, paymentDate));
-            RentPayment rentPayment = RentPayment.Create(amount, paymentDate, tenantId, building, unit, ownerId);
+            await _mediator.Publish(new RentPaymentRequestedDomainEvent(ownerId, individualUnitId, tenantId, amount, paymentDate));
+            RentPayment rentPayment = RentPayment.Create(amount, paymentDate, tenantId, individualUnitId, ownerId);
             await _unitOfWork.RentPayments.AddAsync(rentPayment);
             await _unitOfWork.SaveChangesAsync(CancellationToken.None);
             return _mapper.Map<RentPaymentResponse>(rentPayment);

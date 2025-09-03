@@ -7,8 +7,7 @@
         public string OwnerName { get; set; } = null!;
         public DateTime CreationDate { get; set; }
         public DateTime TerminationDate { get; set; }
-        public string Building { get; set; } = null!;
-        public string Unit { get; set; } = null!;
+        public Guid IndividualUnitId { get; set; }
         public double MonthlyRent { get; set; }
     }
 }

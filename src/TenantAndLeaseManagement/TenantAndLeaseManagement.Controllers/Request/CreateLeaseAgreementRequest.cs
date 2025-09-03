@@ -12,8 +12,7 @@ namespace TenantAndLeaseManagement.Controllers.Request
         public required string TenantName { get; set; } = null!;
         public required string OwnerName { get; set; } = null!;
         public required DateTime CreationDate { get; set; }
-        public required string Building { get; set; } = null!;
-        public required string Unit { get; set; } = null!;
+        public required Guid IndividualUnitId { get; set; }
         public required double MonthlyRent { get; set; }
 
     }

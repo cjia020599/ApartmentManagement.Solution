@@ -10,8 +10,7 @@ namespace FinancialManagement.Infrastructure.MappingProfiles
         {
             CreateMap<RentPayment, RentPaymentResponse>()
                 .ForMember(rp => rp.Id, options => options.MapFrom(rp => rp.Id.Value))
-                .ForMember(rp => rp.Unit, options => options.MapFrom(rp => rp.Unit))
-                .ForMember(rp => rp.Building, options => options.MapFrom(rp => rp.Building))
+                .ForMember(rp => rp.IndividualUnitId, options => options.MapFrom(rp => rp.IndividualUnitId))
                 .ForMember(rp => rp.TenantId, options => options.MapFrom(rp => rp.TenantId))
                 .ForMember(rp => rp.OwnerId, options => options.MapFrom(rp => rp.OwnerId));
         }

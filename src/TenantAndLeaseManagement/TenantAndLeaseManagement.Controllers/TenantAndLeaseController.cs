@@ -56,7 +56,7 @@ namespace TenantAndLeaseManagement.Controllers
         [HttpPost("lease/create")]
         public async Task<IActionResult> CreateLease([FromBody] CreateLeaseAgreementRequest request)
         {
-            var lease = await _leaseCommands.CreateLeaseAsync(request.TenantName, request.OwnerName, request.CreationDate, request.Building,request.Unit,request.MonthlyRent, HttpContext.RequestAborted);
+            var lease = await _leaseCommands.CreateLeaseAsync(request.TenantName, request.OwnerName, request.CreationDate, request.IndividualUnitId, request.MonthlyRent, HttpContext.RequestAborted);
             return CreatedAtAction(nameof(GetLeases), new { id = lease.Id }, lease);
         }
         [HttpPost("lease/terminate/{id}")]

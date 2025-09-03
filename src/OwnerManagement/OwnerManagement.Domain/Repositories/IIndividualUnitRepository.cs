@@ -13,5 +13,6 @@ namespace OwnerManagement.Domain.Repositories
         Task AddAsync(IndividualUnit individualUnit);
         void UpdateAsync(IndividualUnit individualUnit);
         void DeleteAsync(IndividualUnit individualUnit);
+        Task<bool> ExistsByIdAsync(Guid individualUnitId, CancellationToken cancellationToken);
     }
 }
