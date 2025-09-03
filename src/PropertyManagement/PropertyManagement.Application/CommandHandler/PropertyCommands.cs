@@ -8,6 +8,7 @@ using PropertyManagement.Domain.Repositories;
 using PropertyManagement.Domain.Services;
 using MediatR;
 using PropertyManagement.Domain.Events;
+using PropertyManagement.Domain.ValueObjects;
 
 namespace PropertyManagement.Application.CommandHandler
 {
