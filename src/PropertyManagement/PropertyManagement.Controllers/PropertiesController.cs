@@ -36,9 +36,9 @@ namespace PropertyManagement.Controllers
             return NoContent();
         }
         [HttpGet("getAll")]
-        public async Task<IActionResult> GetProperties(string? name)
+        public async Task<IActionResult> GetProperties(string? id)
         {
-            PropertyResponse? property = await _queries.GetPropertyByUnitAsync(name);
+            PropertyResponse? property = await _queries.GetPropertyByUnitAsync(id);
             if (property == null)
             {
                 var properties = await _queries.GetAllPropertiesAsync();

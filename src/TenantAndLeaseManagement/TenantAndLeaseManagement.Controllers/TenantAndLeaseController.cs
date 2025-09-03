@@ -48,9 +48,9 @@ namespace TenantAndLeaseManagement.Controllers
             return NoContent();
         }
         [HttpGet("tenant/getAll")]
-        public async Task<IActionResult> GetTenants(Guid? name)
+        public async Task<IActionResult> GetTenants(Guid? id)
         {
-            var tenant = await _tenantQueries.GetTenantByIdAsync(name);
+            var tenant = await _tenantQueries.GetTenantByIdAsync(id);
             return Ok(tenant);
         }
         [HttpPost("lease/create")]
