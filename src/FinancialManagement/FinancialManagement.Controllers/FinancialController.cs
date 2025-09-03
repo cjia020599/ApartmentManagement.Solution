@@ -17,9 +17,9 @@ namespace FinancialManagement.Controllers
             _queries = queries;
         }
         [HttpPost("createRentPayment")]
-        public async Task<IActionResult> CreateRentPayment(double amount, DateTime paymentDate, Guid tenantId, Guid buildingId, Guid unitId, Guid ownerId)
+        public async Task<IActionResult> CreateRentPayment(double amount, DateTime paymentDate, Guid tenantId, string building, string unit, Guid ownerId)
         {
-            var rentPayment = await _commands.ProcessRentPaymentAsync(amount, paymentDate, tenantId, buildingId, unitId, ownerId);
+            var rentPayment = await _commands.ProcessRentPaymentAsync(amount, paymentDate, tenantId, building, unit, ownerId);
             return CreatedAtAction(nameof(GetRentPayments), new { id = rentPayment.Id }, rentPayment);
         }
         [HttpGet("getRentPayments")]

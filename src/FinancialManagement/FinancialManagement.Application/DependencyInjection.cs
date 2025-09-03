@@ -11,6 +11,7 @@ namespace FinancialManagement.Application
         {
             services.AddAutoMapper(typeof(DependencyInjection));
             services.AddScoped<IRentPaymentCommands, RentPaymentCommands>();
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(RentPaymentCommands).Assembly));
             return services;
         }
     }

@@ -12,6 +12,10 @@ namespace FinancialManagement.Infrastructure.Data.Configurations
             rentPayment.HasKey(rp => rp.Id);
             rentPayment.Property(rp => rp.Id)
                 .HasConversion(id => id.Value, value => new RentPaymentId(value));
+            rentPayment.Property(rp => rp.Unit).IsRequired();
+            rentPayment.Property(rp => rp.Building).IsRequired();
+            rentPayment.Property(rp => rp.TenantId).IsRequired();
+            rentPayment.Property(rp => rp.OwnerId).IsRequired();
         }
     }
 }

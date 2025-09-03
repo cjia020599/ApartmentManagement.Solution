@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\OwnerManagement\OwnerManagement.Domain\OwnerManagement.Domain.csproj" />
     <ProjectReference Include="..\FinancialManagement.Domain\FinancialManagement.Domain.csproj" />
   </ItemGroup>
 
