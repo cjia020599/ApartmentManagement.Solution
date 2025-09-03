@@ -1,4 +1,4 @@
-update-database -context FinancialDbContext
-update-database -context OwnerDbContext
-update-database -context PropertyDbContext
-update-database -context TenantAndLeaseDbContext
+update-database -context FinancialDbContext <br>
+update-database -context OwnerDbContext <br>
+update-database -context PropertyDbContext <br>
+update-database -context TenantAndLeaseDbContext <br>
